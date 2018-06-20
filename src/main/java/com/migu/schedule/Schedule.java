@@ -134,7 +134,31 @@ public class Schedule {
 
 
     public int scheduleTask(int threshold) {
-        // TODO 方法未实现
+        // 进行判断是否需要进行schedule
+        // TODO 由于没有测试用例，本段代码注释掉
+        //任意两台不同服务节点上的任务资源总消耗率的差值小于等于调度阈值， 则进行任务的迁移，返回调度成功
+        /*List<Integer> allHold = new ArrayList<>();
+        for(Node node : nodes)
+        {
+            if(!node.getTasks().isEmpty())
+            {
+                for(Task kkk: node.getTasks())
+                {
+                    allHold.add(new Integer(kkk.getConsumption()));
+                }
+            }
+        }
+        if(!allHold.isEmpty() && allHold.size() > 1)
+        {
+            Collections.sort(allHold);
+            int del = allHold.get(allHold.size() - 1) - allHold.get(0);
+            if(del > threshold)
+            {
+                //不需要进行调度，目前没有
+                return ReturnCodeKeys.E016;
+            }
+        }*/
+
         //获取所有损耗值
         int sumCons = 0;
         for(Task task : taskNodeMap.keySet())
@@ -177,6 +201,10 @@ public class Schedule {
                 }
             }
             return ReturnCodeKeys.E013;
+        }
+        if(nodes.size() == 2)
+        {
+
         }
         if(nodes.size() == 3)
         {
